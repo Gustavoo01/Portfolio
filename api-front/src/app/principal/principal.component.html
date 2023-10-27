@@ -1,0 +1,94 @@
+<nav class="navbar navbar-dark bg-dark" style="position: fixed; top: 0; height: max-content; width: 100%;">
+    <h5 class="titulo">Desafio Elotech | Cadastro de Pessoas (Angular + Spring Boot)</h5>
+</nav>
+
+<div class="card_form" *ngIf="telaCadastro">
+    <form action="">
+        <img src="assets/pessoa.png" alt="" style="width: 250px; margin-bottom: 20px;" />
+        <div class="page">
+            <div class="field field_v2">
+                <label for="nome" class="ha-screen-reader">Nome:</label>
+                <input type="text" class="field__input" name="nome" placeholder="Ex. João Silva"
+                    [(ngModel)]="pessoa.nome" />
+                <span class="field__label-wrap" aria-hidden="true">
+                    <span class="field__label">Nome completo</span>
+                </span>
+            </div>
+            <div class="field field_v2">
+                <label for="cpf" class="ha-screen-reader">CPF:</label>
+                <input type="text" class="field__input" name="cpf" placeholder="Ex: 538.422.290-54"
+                    [(ngModel)]="pessoa.cpf" />
+                <span class="field__label-wrap" aria-hidden="true">
+                    <span class="field__label">CPF</span>
+                </span>
+            </div>
+            <div class="field field_v3">
+                <label for="dataNascimento" class="ha-screen-reader">Data de Nascimento:</label>
+                <input type="date" class="field__input" name="dataNascimento" [(ngModel)]="pessoa.dataNascimento" />
+                <span class="field__label-wrap" aria-hidden="true">
+                    <span class="field__label">Data de Nascimento</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap">
+            <div *ngFor="let contato of pessoa.contatos; let i = index">
+                <app-cadastro-contato [contato]="contato" [i]="i"></app-cadastro-contato>
+                <button class="btn btn-danger" (click)="removerContato(i)">
+                    <i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <button class="btn btn-info" (click)="adicionarContato()" style="color: white; margin-top: 15px;">
+            Adicionar Contato <i class="fa fa-plus" style="color: white;"></i></button>
+
+        <hr>
+
+        <input type="button" value="Cancelar" class="btn btn-secondary" (click)="cancelar()" />
+        <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()" />
+        <input type="button" value="Alterar" *ngIf="telaCadastro && !btnCadastro" class="btn btn-warning"
+            (click)="editar()" />
+        <input type="button" value="Remover" *ngIf="telaCadastro && !btnCadastro" class="btn btn-danger"
+            (click)="remover()" />
+    </form>
+</div>
+
+<div *ngIf="tabela" style="display: flex; justify-content: center; margin-top: 50px;">
+    <img src="assets/website.png" alt="" style="width: 256px;">
+</div>
+
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+
+    <table class="table table-hover" *ngIf="tabela">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Selecionar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let p of pessoas; index as i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.cpf }}</td>
+                <td>{{ p.dataNascimento }}</td>
+                <td>
+                    <button (click)="selecionarPessoa(i)" class="btn btn-success">
+                        Selecionar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button class="float" *ngIf="tabela" (click)="botaoCadastro()">
+    Cadastrar
+</button>
+
+<nav class="navbar navbar-dark bg-dark" style="position:fixed; bottom: 0; height: max-content; width: 100%;">
+    <h5 class="titulo">Desafio Elotech | By: Gustavo de Souza</h5>
+</nav>

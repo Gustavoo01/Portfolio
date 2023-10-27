@@ -1,0 +1,29 @@
+<!-- contato.component.html -->
+
+<div class="card" style="width: 15rem; padding: 5px; margin: 15px 5px 0 5px">
+    <h6 style="margin: 0;">Contato #{{ i + 1 }}</h6>
+    <div class="field field_v2">
+        <label for="contatos.nome" class="ha-screen-reader">Nome do Contato:</label>
+        <input type="text" class="field__input" name="contatos.nome" [(ngModel)]="contato.nome"
+            placeholder="Nome do Contato" />
+        <span class="field__label-wrap" aria-hidden="true">
+            <span class="field__label">Nome do Contato:</span>
+        </span>
+    </div>
+    <div class="field field_v2">
+        <label for="cpf" class="ha-screen-reader">Telefone:</label>
+        <input type="text" class="field__input" name="contatos.telefone" [(ngModel)]="contato.telefone"
+            placeholder="Telefone do Contato" />
+        <span class="field__label-wrap" aria-hidden="true">
+            <span class="field__label">Telefone</span>
+        </span>
+    </div>
+    <div class="field field_v2">
+        <label for="cpf" class="ha-screen-reader">Nome do Contato:</label>
+        <input type="text" class="field__input" name="contatos.email" [(ngModel)]="contato.email"
+            placeholder="Email do Contato" />
+        <span class="field__label-wrap" aria-hidden="true">
+            <span class="field__label">E-mail</span>
+        </span>
+    </div>
+</div>
